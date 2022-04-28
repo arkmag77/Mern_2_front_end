@@ -1,0 +1,11 @@
+.PopUpWindow {
+    position:fixed;
+    width: 30%;
+    border-style: groove;
+    background-color: whitesmoke;
+    border-color: black;
+    right: 50%;    
+    top: 20%;                 
+    transform: translate(50%, 0);
+    padding: 20px
+}
