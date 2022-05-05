@@ -1,81 +1,44 @@
 import React from 'react';
 
 import {
-  Link, useNavigate
+  Link, Navigate, useNavigate
 } from "react-router-dom";
 
 import './Navbar.css';
 // import axios from 'axios';
 
-function Navbar(/* props */) {
+function Navbar(props) {
 
-//   let navigate = useNavigate();
+  console.log('props.userServerResp w Navbar', props.userServerResp )
 
-//   function logOut(e) {
+  let navigate = useNavigate();
+  
 
-//     e.preventDefault();
+  function logOut(e) {
 
-//     let logedUser = {
-//       username: props.serverResponse.username,
-//       jwtToken: props.serverResponse.jwt_token
-//     }
+      e.preventDefault();
+      navigate("/signin");
+      let userServerRespwNavbar;
+      
+      props.setUserServerResp (() => {
+        
+        return userServerRespwNavbar === false;
 
-//     console.log(`Wylogowanie ${logedUser.jwtToken}`);
-//     console.log(`Wylogowanie ${logedUser.username}`);
+    });
 
-//     const headers = {
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json',
-//       'Authorization': 'Bearer '  + logedUser.jwtToken
-//     };
+    console.log('userServerRespwNavbar w Logout () w Navbar', userServerRespwNavbar);
+    localStorage.setItem("localStorage.setItem", null);
 
-//     axios.post(
-//       'https://akademia108.pl/api/social-app/user/logout',
-//       {},
-//       { 'headers': headers })
-//       .then((res) => {
-
-//         console.log("Odpowiedź z wylogowywania servera", res);
-
-//         if (res.data.message === "Successfully logged out") {
-
-//           localStorage.setItem("serverResponse", null);
-          
-//           props.setServerResp(() => {
-
-//             let serverResp = null;
-//             console.log("Odpowiedź z wylogowywania servera", res.data.message);
-//             return serverResp;
-
-//           });
-//           // navigate("/signin");
-          
-//           navigate("/signin");
-//         }
-
-//         if (res.data.message === "Unauthenticated.") {
-
-//           console.log("Odpowiedź z wylogowywania servera", res.data.message);
-
-//         }
-
-//       })
-
-//       .catch((error) => {
-//         console.error(`Błąd ${error}`);
-//       })
-
-//   }
+  }
 
   return (
     <div className="Navbar">
       <ul className='TheList'>
-        <li><Link to="/">Customers</Link></li>
-        {/* !props.serverResponse && */ <li><Link to="/signin">Sign in</Link></li>}
-        {/* {!props.serverResponse && <li><Link to="/singlecustomer">Single customer</Link></li>} */}
-        {/* props.serverResponse &&  */<li><Link to="/addaction">Add action</Link></li>}
-        {/* props.serverResponse &&  */<li><Link to="/addcustomer">Add customer</Link></li>}
-        {/* { props.serverResponse &&  <li><Link onClick={logOut} to="/signin">Log out</Link></li>} */}
+        {props.userServerResp && <li><Link to="/" >Customers</Link></li>}
+        {/* {!props.userServerResp && <li><Link to="/signin">Sign In Page</Link></li>} */}
+        {!props.userServerResp && <li to="/signin"> Sign In Page</li>}
+        {props.userServerResp  && <li><Link to="/addcustomer">Add customer</Link></li>}
+        {props.userServerResp && <li><Link onClick={logOut} to="/signin">Log out</Link></li>}
       </ul>
     </div>
   );

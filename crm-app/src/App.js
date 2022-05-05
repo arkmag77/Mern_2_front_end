@@ -8,7 +8,6 @@ import SignIn from './signin/SignIn';
 import AddCustomer from './addcustomer/AddCustomer';
 import SingleCustomer from './singlecustomer/SingleCustomer';
 import Actions from './singlecustomer/Actions';
-import Details from './singlecustomer/Details';
 
 // import { render } from "react-dom";
 import {
@@ -20,20 +19,18 @@ import {
   useParams
 } from "react-router-dom";
 
-/* import { render } from "react-dom"; */
-/* import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom"; */
-
-
 
 function App() {
 
   const [customerIdResp, setCustomerIdResp] = useState('');
-
-  console.log("customerIdResp w App", customerIdResp)
+  const [userServerResp, setUserServerResp] = useState(false);
+  // const [actionServerResp, setActionServerResp] = useState('');
+  // const [singleCustomer, setSingleCustomer] = useState('');
+ 
+  console.log("customerIdResp w App", customerIdResp);
+  console.log("userServerResp w App ", userServerResp);
+  // console.log("actionServerResp w App ", actionServerResp);
+  // console.log("singleCustomer w App ", singleCustomer);
 
   return (
     <BrowserRouter>
@@ -41,20 +38,15 @@ function App() {
         <header className="App-header">
             <span className="App-logo-container"> <img src={logo} className="App-logo" alt="logo" />
             <p>C---R---M</p></span>
-            { <Navbar /* serverResponse={serverResponse} setServerResp={setServerResp} *//> }
+            { <Navbar userServerResp={userServerResp} setUserServerResp={setUserServerResp}/> }
         </header>
         <Routes>
-          {/* <Route> */}
-            {/* <Route index element={<Customers />} /> */}
             <Route path="/" element={<Customers setCustomerIdResp={setCustomerIdResp} />} /> 
-            <Route path="signin" element={<SignIn  />} />
-            <Route path="addcustomer" element={<AddCustomer  />} />
-            <Route path="singlecustomer" element={<SingleCustomer customerId={customerIdResp}   />} >
-              <Route path="details" element={<Details/>} />
-              <Route path="actions" element={<Actions/>} />
+            <Route path="signin" element={<SignIn userServerResp={userServerResp} setUserServerResp={setUserServerResp}  />} />
+            <Route path="addcustomer" element={<AddCustomer/>} />
+            <Route path="singlecustomer/:id" element={<SingleCustomer  /* customerId={customerIdResp} */   />} >
+              <Route path="actions" element={<Actions  customerId={customerIdResp} />} />
             </Route>
-            
-          {/* </Route> */}
         </Routes>
       </div>
     </BrowserRouter>
