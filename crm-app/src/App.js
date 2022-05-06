@@ -7,16 +7,13 @@ import Navbar from './Navbar';
 import SignIn from './signin/SignIn';
 import AddCustomer from './addcustomer/AddCustomer';
 import SingleCustomer from './singlecustomer/SingleCustomer';
-import Actions from './singlecustomer/Actions';
+// import Actions from './singlecustomer/Actions';
 
 // import { render } from "react-dom";
 import {
   BrowserRouter,
   Routes,
-  Route,
-  Outlet,
-  useRouteMatch,
-  useParams
+  Route
 } from "react-router-dom";
 
 
@@ -24,13 +21,9 @@ function App() {
 
   const [customerIdResp, setCustomerIdResp] = useState('');
   const [userServerResp, setUserServerResp] = useState(false);
-  // const [actionServerResp, setActionServerResp] = useState('');
-  // const [singleCustomer, setSingleCustomer] = useState('');
  
   console.log("customerIdResp w App", customerIdResp);
   console.log("userServerResp w App ", userServerResp);
-  // console.log("actionServerResp w App ", actionServerResp);
-  // console.log("singleCustomer w App ", singleCustomer);
 
   return (
     <BrowserRouter>
@@ -41,12 +34,11 @@ function App() {
             { <Navbar userServerResp={userServerResp} setUserServerResp={setUserServerResp}/> }
         </header>
         <Routes>
-            <Route path="/" element={<Customers setCustomerIdResp={setCustomerIdResp} />} /> 
-            <Route path="signin" element={<SignIn userServerResp={userServerResp} setUserServerResp={setUserServerResp}  />} />
-            <Route path="addcustomer" element={<AddCustomer/>} />
-            <Route path="singlecustomer/:id" element={<SingleCustomer  /* customerId={customerIdResp} */   />} >
-              <Route path="actions" element={<Actions  customerId={customerIdResp} />} />
-            </Route>
+              <Route path="/" element={<Customers setCustomerIdResp={setCustomerIdResp} />} /> 
+              <Route path="signin" element={<SignIn userServerResp={userServerResp} setUserServerResp={setUserServerResp}  />} />
+              <Route path="addcustomer" element={<AddCustomer/>} />
+              <Route path="singlecustomer/:id" element={<SingleCustomer  /* customerId={customerIdResp} */   />} />
+              {/* <Route path="actions" element={<Actions  customerId={customerIdResp} />} /> */}
         </Routes>
       </div>
     </BrowserRouter>

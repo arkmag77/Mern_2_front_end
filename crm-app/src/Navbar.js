@@ -35,8 +35,8 @@ function Navbar(props) {
     <div className="Navbar">
       <ul className='TheList'>
         {props.userServerResp && <li><Link to="/" >Customers</Link></li>}
-        {/* {!props.userServerResp && <li><Link to="/signin">Sign In Page</Link></li>} */}
-        {!props.userServerResp && <li to="/signin"> Sign In Page</li>}
+        {!props.userServerResp && <li><Link to="/signin">Sign In Page</Link></li>}
+        {/* {!props.userServerResp && <li to="/signin"> Sign In Page</li>} */}
         {props.userServerResp  && <li><Link to="/addcustomer">Add customer</Link></li>}
         {props.userServerResp && <li><Link onClick={logOut} to="/signin">Log out</Link></li>}
       </ul>

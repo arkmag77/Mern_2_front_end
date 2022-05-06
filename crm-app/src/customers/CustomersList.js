@@ -38,7 +38,6 @@ function CustomersList(props) {
     return (
 
         <div>
-
             
             {isPopUpToEditVisible && 
             <div className="PopUpWindow" >

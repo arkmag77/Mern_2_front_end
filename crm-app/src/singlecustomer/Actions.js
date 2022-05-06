@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+
 import {
     Link, 
     useNavigate,
@@ -14,7 +15,8 @@ function Actions (props) {
 
     // let id = props.customerId;
     let { id } = useParams();
-    let x = false;
+    // let x = false;
+    let navigate = useNavigate();
     
 
     const inputDate = React.useRef();

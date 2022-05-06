@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import Actions from './Actions';
 import {
+    BrowserRouter,
+    Routes,
+    Route,
     Link, 
     useNavigate,
     useParams,
@@ -14,6 +18,7 @@ function SingleCustomer(props) {
     let { id } = useParams();
     // let customerId = props.customerId;
     let actionCounter = 1;
+    let navigate = useNavigate();
 
     const [singleCustomer, setSingleCustomer] = useState('');
     const [popUpWindow, setPopUpWindow] = useState(false);
@@ -89,20 +94,6 @@ function SingleCustomer(props) {
     let actions = singleCustomer.actions;
     console.log("actions", actions);
     
-    // let arr = Object.values(singleCustomer);
-    // console.log("arr", arr);
-
-    // let pElements = (arr)?.map((arrEl) =>  { 
-    //      return (
-    //          <p key={arrEl._id} >
-    //              <span className="CustomerAddress">Customer Address: {arrEl.street},  </span>
-    //              <span className="CustomerAddress">{arrEl.zipcode}  </span>
-    //              <span className="CustomerAddress">{arrEl.city},  </span>
-    //          </p>
-    //      );
-    //  }) 
-
-    
     let trElements = actions?.map((action) =>  { 
         let date = new Date(action.date)
         return (
@@ -147,10 +138,12 @@ function SingleCustomer(props) {
             </div>
 
             <div>
-                <button className="BtnAddAction" ><Link to="actions" /* {`${singleCustomer._id}/actions`} */>Add Action</Link></button>
+                <button className="BtnAddAction" ><Link to="actions" >Add Action</Link></button>
+                {/* <button className="BtnAddAction"  onClick={navigate ('/actions')}>Add Action</button> */}
+                {/* <button className="BtnAddAction"  onClick={()=>navigate ('/actions')}>Add Action</button> */}
             </div>
 
-            <Outlet/>
+            {/* <Outlet/> */}
  
         </div>
     );
