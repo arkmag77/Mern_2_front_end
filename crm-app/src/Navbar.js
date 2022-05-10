@@ -21,13 +21,16 @@ function Navbar(props) {
       let userServerRespwNavbar;
       
       props.setUserServerResp (() => {
-        
-        return userServerRespwNavbar === false;
+
+        return (userServerRespwNavbar ===  false)
+        /* return userServerRespwNavbar */
 
     });
 
-    console.log('userServerRespwNavbar w Logout () w Navbar', userServerRespwNavbar);
-    localStorage.setItem("localStorage.setItem", null);
+
+
+    console.log('userServerRespwNavbar in Logout () in Navbar', userServerRespwNavbar);
+    // localStorage.setItem("localStorage.setItem in Logout () in Navbar", null);
 
   }
 

@@ -7,7 +7,7 @@ import Navbar from './Navbar';
 import SignIn from './signin/SignIn';
 import AddCustomer from './addcustomer/AddCustomer';
 import SingleCustomer from './singlecustomer/SingleCustomer';
-// import Actions from './singlecustomer/Actions';
+import Actions from './singlecustomer/Actions';
 
 // import { render } from "react-dom";
 import {
@@ -34,11 +34,11 @@ function App() {
             { <Navbar userServerResp={userServerResp} setUserServerResp={setUserServerResp}/> }
         </header>
         <Routes>
-              <Route path="/" element={<Customers setCustomerIdResp={setCustomerIdResp} />} /> 
+              <Route path="/" element={<Customers setCustomerIdResp={setCustomerIdResp} userServerResp={userServerResp} />} /> 
               <Route path="signin" element={<SignIn userServerResp={userServerResp} setUserServerResp={setUserServerResp}  />} />
               <Route path="addcustomer" element={<AddCustomer/>} />
               <Route path="singlecustomer/:id" element={<SingleCustomer  /* customerId={customerIdResp} */   />} />
-              {/* <Route path="actions" element={<Actions  customerId={customerIdResp} />} /> */}
+              <Route path="action/:id"  element={<Actions  customerId={customerIdResp} />} />
         </Routes>
       </div>
     </BrowserRouter>

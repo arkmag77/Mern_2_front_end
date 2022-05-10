@@ -138,7 +138,7 @@ function SingleCustomer(props) {
             </div>
 
             <div>
-                <button className="BtnAddAction" ><Link to="actions" >Add Action</Link></button>
+                <button className="BtnAddAction" ><Link to={`/action/${id}`} >Add Action</Link></button>
                 {/* <button className="BtnAddAction"  onClick={navigate ('/actions')}>Add Action</button> */}
                 {/* <button className="BtnAddAction"  onClick={()=>navigate ('/actions')}>Add Action</button> */}
             </div>

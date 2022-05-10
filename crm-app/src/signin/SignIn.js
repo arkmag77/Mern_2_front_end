@@ -96,13 +96,20 @@ function SignIn (props) {
         let logedUser = {
             username: inputUserName.current.value,
             password: inputPassword.current.value,
-            ttl: 3600
+            // ttl: 3600
         };
 
         const headers = {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
         }
+
+        /* let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            }
+        }; */
 
         axios.post('http://www.localhost:8080/api/user/login', 
         JSON.stringify(logedUser), 
@@ -115,23 +122,25 @@ function SignIn (props) {
 
                 props.setUserServerResp (() => {
                 
-                    console.log('response.data', response.data)
+                    console.log('userServerResp in logIn() w SigIn', response.data)
                     console.log('response.data.success', response.data.success)
-                    return response.data.success;
+                    // return response.data.success;
+                    return response.data;
+
 
                 });
 
                 navigate("/");
 
-                localStorage.setItem("response.data", JSON.stringify(response.data));
+                localStorage.setItem("response.data localStorage.setItem in logIn() w SigIn ", JSON.stringify(response.data));
             }  
             
             if (response.data.success === false) {
 
                 props.setUserServerResp (() => {
                 
-                    console.log('response.data', response.data.success)
-                    return response.data.success;
+                    console.log('userServerResp if response.data.success===flase in logIn() w SigIn ', response.data)
+                    // return response.data;
 
                 });
 
@@ -141,7 +150,8 @@ function SignIn (props) {
 
                 });
 
-                // localStorage.setItem("serverResponse", null);
+                localStorage.setItem("userServerResp", null);
+
 
             }
 
@@ -183,7 +193,7 @@ function SignIn (props) {
                 <button type="submit"> Sign In</button>
 
                 <fieldset>
-                    <span className="ServerRespErr"> {props.userServerResp.message} {serverRespErr} </span>
+                    <span className="ServerRespErr"> {/* {props.userServerResp.message} */} {serverRespErr} </span>
                 </fieldset>
 
             </form>

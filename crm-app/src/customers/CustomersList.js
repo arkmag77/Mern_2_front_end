@@ -14,9 +14,11 @@ function CustomersList(props) {
 
     const [isPopUpToEditVisible, setPopUpToEditVisible] = useState(false);
     const [customerIdToEdit, setCustomerIdToEdit] = useState ('');
+    // const [customerNameToEdit, setCustomerNameToEdit] = useState ('');
     
     const [isPopUpToDeleteVisible, setPopUpToDeleteVisible] = useState(false);
     const [customerIdToDelete, setCustomerIdToDelete] = useState ('');
+    
 
     
 
@@ -29,7 +31,10 @@ function CustomersList(props) {
                 <td className="Adres">{customer.address.street} {<br/>} {customer.address.zipcode} {customer.address.city}</td>
                 <td className="Nip">{customer.nip}</td>
                 <td className="Details" onClick={()=> {console.log("Details clicked"); props.detailsMethod(customer._id)}}><Link to={`/singlecustomer/${customer._id}`} > Details </Link> </td>
-                <td className="Edit" ><button onClick={()=> {console.log("Edit Customer btn clicked"); setCustomerIdToEdit(customer._id); setPopUpToEditVisible(true)}}> Edit Customer </button> </td>  
+                <td className="Edit" ><button onClick={()=> {console.log("Edit Customer btn clicked"); setCustomerIdToEdit(customer._id); 
+                props.setCustomerName(customer.name);  props.setCustomerStreet(customer.address.street); props.setCustomerZipcode(customer.address.zipcode); 
+                props.setCustomerCity(customer.address.city); props.setCustomerNip(customer.nip); 
+                setPopUpToEditVisible(true)}}> Edit Customer </button> </td>  
                 <td className="Delete" ><button onClick={()=> {console.log("Delete Customer btn clicked"); setCustomerIdToDelete(customer._id); setPopUpToDeleteVisible(true)}}> Delete Customer </button> </td>  
             </tr>
         );
@@ -47,23 +52,23 @@ function CustomersList(props) {
 
                     <fieldset>
                         <label htmlFor="Name">Name and Surname</label> <br />
-                        <input ref={props.inputName} name="Name" type="text" placeholder="Enter Name and Surname" />
+                        <input /* ref={props.inputName} */ value={props.customerName} onChange={(e)=>props.setCustomerName(e.target.value)} name="Name" type="text" /* placeholder={props.customerNameToEdit} */ /* value={props.target.value}  */  /*onChange={(e)=>props.setCustomerName(e.target.value)} /* value={customerNameToEdit} *//>
                     </fieldset>
 
                     <fieldset >
                         <label htmlFor="Stree">Street</label> <br />
-                        <input ref={props.inputStreet} name="Street" type="text" placeholder="Enter Street" /> <br />
+                        <input /* ref={props.inputStreet} */ value={props.customerStreet} onChange={(e)=>props.setCustomerStreet(e.target.value)} name="Street" type="text" placeholder="Enter Street" /> <br />
 
                         <label htmlFor="Zipcode">Zipcode</label> <br />
-                        <input ref={props.inputZipcode} name="Zipcode" type="text" placeholder="Enter Zipcode" /> <br />
+                        <input /* ref={props.inputZipcode} */ value={props.customerZipcode} onChange={(e)=>props.setCustomerZipcode(e.target.value)} name="Zipcode" type="text" placeholder="Enter Zipcode" /> <br />
 
                         <label htmlFor="City">City</label> <br />
-                        <input ref={props.inputCity} name="City" type="text" placeholder="Enter City" />
+                        <input /* ref={props.inputCity} */ value={props.customerCity} onChange={(e)=>props.setCustomerCity(e.target.value)} name="City" type="text" placeholder="Enter City" />
                     </fieldset>
 
                     <fieldset>
                         <label htmlFor="Nip">NIP Number</label> <br />
-                        <input ref={props.inputNip} name="Nip" type="text" placeholder="Enter NIP Number" />
+                        <input /* ref={props.inputNip} */  value={props.customerNip} onChange={(e)=>props.setCustomerNip(e.target.value)} name="Nip" type="text" placeholder="Enter NIP Number" />
                     </fieldset>
 
                 <button type="Submit" className="btnSave" /* onClick={()=>{console.log("Save btn clicked, customer._id:", customerIdToEdit); props.editCustomer(customerIdToEdit); setPopUpToEditVisible(false) }} */> Save </button>

@@ -1,8 +1,14 @@
 import React, { useState, useEffect/* , useRef */ } from 'react';
 import './AddCustomer.css';
 
-import axios from 'axios';
+import {
+    Link, 
+    useNavigate,
+    useParams,
+    Outlet,
+  } from "react-router-dom";
 
+import axios from 'axios';
 
 function AddCustomer () {
 
@@ -24,6 +30,8 @@ function AddCustomer () {
     const inputZipcode = React.useRef();
     const inputCity = React.useRef();
     const inputNip = React.useRef();
+
+    let navigate = useNavigate();
 
     const validate = (e) => {
 
@@ -238,6 +246,7 @@ function AddCustomer () {
             .then((res) => {
 
                 // let serverRespErr;
+                navigate('/');
                 console.log("res.data w add() w AddCustomer ", res.data);
 
             })

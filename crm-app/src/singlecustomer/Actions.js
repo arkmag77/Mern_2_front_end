@@ -45,7 +45,7 @@ function Actions (props) {
         JSON.stringify(newAction ),
             { 'headers': headers })
             .then((res) => {
-
+                navigate('/singlecustomer/'+id);
                 console.log("res.data add () w Actions ", res.data);
 
             })
@@ -61,8 +61,6 @@ function Actions (props) {
     }
 
     return (
-
-        
         
             <div className="Action">
             
@@ -72,12 +70,12 @@ function Actions (props) {
 
                 <fieldset>
                     <label htmlFor = "Date" >Date</label> <br />
-                    <input ref={inputDate} name="Date" type="text" placeholder="Enter Date" />
+                    <input ref={inputDate} name="Date" type="date" placeholder="Enter Date" />
                 </fieldset>
                 
                 <fieldset>
-                    <label htmlFor = "ActionDescription">Action Descrition</label> <br />
-                    <input ref={inputActionDescrition} name="ActionDescrition" type="text" placeholder="Enter Action Description" /> <br />
+                    <label htmlFor = "ActionDescription">Action Description</label> <br />
+                    <textarea ref={inputActionDescrition} name="ActionDescrition" rows="5" cols="66" placeholder="Enter Action Description" /> <br />
                 </fieldset>
 
                 <fieldset>
