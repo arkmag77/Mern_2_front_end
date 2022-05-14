@@ -12,6 +12,8 @@ function Customers(props) {
     const [customerZipcode, setCustomerZipcode] = useState ('');
     const [customerCity, setCustomerCity] = useState ('');
     const [customerNip, setCustomerNip] = useState ('');
+    const [serverResponseErr, setServerResponseErr] = useState('');
+    // const [customerNameToEdit, setCustomerNameToEdit] = useState ('');
 
     // const inputName = React.useRef();
     // const inputStreet = React.useRef();
@@ -20,7 +22,7 @@ function Customers(props) {
     // const inputCity = React.useRef();
     // const inputNip = React.useRef();
 
-    const [customerNameToEdit, setCustomerNameToEdit] = useState ('');
+    
 
     useEffect(() => {
         getCustomers();
@@ -35,7 +37,7 @@ function Customers(props) {
         const headers = {
             "Content-Type": "application/json",
             "Accept": "application/json",
-            'Authorization': 'Bearer '+ token
+            'x-auth-token': token
         }
 
         axios.get('http://www.localhost:8080/api/customer/all', {'headers': headers})
@@ -105,9 +107,9 @@ function Customers(props) {
             });
     }
 
-    const editCustomer = (e, customerId) => {
+    const editCustomer = (/* e, */ customerId) => {
 
-        e.preventDefault();
+        // e.preventDefault();
         console.log(`funkcja editCustomer () -wywołanie, przekazane customerId: ` + customerId)
 
         let editedCustomer = {
@@ -141,9 +143,12 @@ function Customers(props) {
                 console.log("response data w editCustomer", response.data);
                 
                 getCustomers();
+                setServerResponseErr("");
             })
             .catch((error) => {
                 console.error(error);
+                setServerResponseErr("" + error);
+
             })
 
 
@@ -164,8 +169,8 @@ function Customers(props) {
             customerStreet={customerStreet} setCustomerStreet={setCustomerStreet} /* inputCity={inputCity} */ 
             customerZipcode={customerZipcode} setCustomerZipcode={setCustomerZipcode}
             customerCity={customerCity} setCustomerCity={setCustomerCity} /* inputZipcode={inputZipcode}  */ 
-            customerNip={customerNip} setCustomerNip={setCustomerNip} /* inputNip={inputNip} */  editCustomer={editCustomer}
-            customerNameToEdit={customerNameToEdit} setCustomerNameToEdit={setCustomerNameToEdit} />
+            customerNip={customerNip} setCustomerNip={setCustomerNip} /* inputNip={inputNip} */  editCustomer={editCustomer} 
+            serverResponseErr={serverResponseErr} />
         
         </div>
 

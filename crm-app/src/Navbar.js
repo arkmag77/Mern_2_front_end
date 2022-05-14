@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 
 import {
@@ -9,27 +10,67 @@ import './Navbar.css';
 
 function Navbar(props) {
 
-  console.log('props.userServerResp w Navbar', props.userServerResp )
+  console.log('props.userServerResp w Navbar', props.userServerResp)
 
   let navigate = useNavigate();
-  
+
 
   function logOut(e) {
 
-      e.preventDefault();
-      navigate("/signin");
-      let userServerRespwNavbar;
-      
-      props.setUserServerResp (() => {
+    e.preventDefault();
 
-        return (userServerRespwNavbar ===  false)
-        /* return userServerRespwNavbar */
+    let token = props.userServerResp?.jwt;
 
-    });
+    const headers = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'x-auth-token': token
+    }
+
+    axios.put('http://www.localhost:8080/api/user/logout', {}, {'headers': headers})
+    .then((response)=>{
+
+      if (response.data.message === 'Succesfully Logged Out' ) {
+        
+        props.setUserServerResp(()=> {
+          console.log('response in logOut() in Navbar', response.data.message);
+          return null;
+        })
+
+        localStorage.setItem("localStorage.setItem in Logout () in Navbar", null);
+
+        navigate("/signin");
+
+      }
+
+      // if (response.data.error === 'Unauthenticated'){
+
+      //   props.setUserServerResp(()=>{
+      //     return response.data.error
+      //   })
+      // }
+
+
+    })
+
+    .catch((error)=>{
+      console.error(error);
+    })
+
+
+    // navigate("/signin");
+    // let userServerRespwNavbar;
+
+    // props.setUserServerResp(() => {
+
+    //   return (userServerRespwNavbar === false)
+    //   /* return userServerRespwNavbar */
+
+    // });
 
 
 
-    console.log('userServerRespwNavbar in Logout () in Navbar', userServerRespwNavbar);
+    // console.log('userServerRespwNavbar in Logout () in Navbar', userServerRespwNavbar);
     // localStorage.setItem("localStorage.setItem in Logout () in Navbar", null);
 
   }
@@ -40,7 +81,7 @@ function Navbar(props) {
         {props.userServerResp && <li><Link to="/" >Customers</Link></li>}
         {!props.userServerResp && <li><Link to="/signin">Sign In Page</Link></li>}
         {/* {!props.userServerResp && <li to="/signin"> Sign In Page</li>} */}
-        {props.userServerResp  && <li><Link to="/addcustomer">Add customer</Link></li>}
+        {props.userServerResp && <li><Link to="/addcustomer">Add customer</Link></li>}
         {props.userServerResp && <li><Link onClick={logOut} to="/signin">Log out</Link></li>}
       </ul>
     </div>
