@@ -1,10 +1,9 @@
 import React, { useState, useEffect} from 'react';
-
+import './SignIn.css';
 import {
     Link, Navigate, useNavigate
   } from "react-router-dom";
 
-import './SignIn.css';
 
 import axios from 'axios';
 
@@ -146,7 +145,7 @@ function SignIn (props) {
 
                 setServerRespErr (() => {
 
-                    return "User name and Password do not match";
+                    return "⚠ User name and Password do not match";
 
                 });
 
@@ -180,13 +179,13 @@ function SignIn (props) {
             <form onSubmit = {(e)=>{validate(e)}}>
                 <fieldset>
                 <label htmlFor="UserName">User Name</label> <br />
-                    <input ref={inputUserName} name="UserName" type="text" placeholder="Enter User Name" />
+                    <input ref={inputUserName} name="UserName" type="text" placeholder="Enter User Name" /> <br />
                     <span className="UserNameMessage"> {userNameMessage} </span>
                 </fieldset>
 
                 <fieldset>
                     <label htmlFor="Password">Password</label> <br />
-                    <input ref={inputPassword} name="Password" type="text" placeholder="Enter Password" />
+                    <input ref={inputPassword} name="Password" type="text" placeholder="Enter Password" /> <br />
                     <span className="PasswordMessage"> {passwordMessage} </span>
                 </fieldset>
 

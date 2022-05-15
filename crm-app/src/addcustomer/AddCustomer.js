@@ -267,38 +267,38 @@ function AddCustomer () {
 
         <div className="AddCustomer">
 
-            <h3>Add Customer Form</h3>
-            <form onSubmit= {(e)=>{validate(e);  console.log('btn Add Customer clicked') }}>
+            <h1>Add Customer Form</h1>
+            <form className="AddCustomerForm" onSubmit= {(e)=>{validate(e);  console.log('btn Add Customer clicked') }}>
 
                 <fieldset>
-                    <label htmlFor="Name">Name and Surname</label> <br />
-                    <input ref={inputName} name="" type="text" placeholder="Enter Name and Surname" />
+                    <label htmlFor="Name">Name and Surname</label> {/* <br /> */}
+                    <input ref={inputName} name="" type="text" placeholder="Enter Name and Surname" /> <br />
                     <span className="NameMessage"> {nameMessage} </span>
                 </fieldset>
 
-                <label>Address</label> <br />
+                {/* <label>Address</label> <br /> */}
                 <fieldset >
 
-                    <label htmlFor="Street">Street</label> <br />
-                    <input ref={inputStreet} name="Street" type="text" placeholder="Enter Street" /> 
+                    <label htmlFor="Street">Street</label> {/* <br /> */}
+                    <input ref={inputStreet} name="Street" type="text" placeholder="Enter Street" /> <br />
                     <span className="StreetMessage"> {streetMessage} </span> <br />
 
                    {/*  <label htmlFor="Number">House Number</label> <br />
                     <input ref={inputNumber} name="Number" type="text" placeholder="Enter House Number" /> <br /> */}
 
-                    <label htmlFor="Zipcode">Zipcode</label> <br />
-                    <input ref={inputZipcode} name="Zipcode" type="text" placeholder="Enter Zipcode" /> 
+                    <label htmlFor="Zipcode">Zipcode</label> {/* <br /> */}
+                    <input ref={inputZipcode} name="Zipcode" type="text" placeholder="Enter Zipcode" /> <br />
                     <span className="ZipcodeMessage"> {zipcodeMessage} </span> <br />
 
-                    <label htmlFor="City">City</label> <br />
-                    <input ref={inputCity} name="City" type="text" placeholder="Enter City" />
-                    <span className="CityMessage"> {cityMessage} </span> <br />
+                    <label htmlFor="City">City</label> {/* <br /> */}
+                    <input ref={inputCity} name="City" type="text" placeholder="Enter City" /> <br />
+                    <span className="CityMessage"> {cityMessage} </span> {/* <br /> */}
 
                 </fieldset>
 
                 <fieldset>
-                    <label htmlFor="Nip">NIP Number</label> <br />
-                    <input ref={inputNip} name="Nip" type="text" placeholder="Enter NIP Number" />
+                    <label htmlFor="Nip">NIP Number</label> {/* <br /> */}
+                    <input ref={inputNip} name="Nip" type="text" placeholder="Enter NIP Number" /> <br />
                     <span className="NipMessage"> {nipMessage} </span> 
                 </fieldset>
 

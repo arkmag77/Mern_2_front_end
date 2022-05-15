@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 // import * as moment from 'moment';
+import './Actions.css';
 
 import {
     Link, 
@@ -127,13 +128,13 @@ function Actions (props) {
         
             <div className="Action">
             
-            <h3>Add Action Form</h3>
+            <h1>Add Action Form</h1>
 
             <form onSubmit={(e)=>{validate(e);  console.log('btn Save Action clicked') }}> 
 
                 <fieldset>
                     <label htmlFor = "Date" >Date</label> <br />
-                    <input ref={inputDate} name="Date" type="date" placeholder="Enter Date" />
+                    <input ref={inputDate} name="Date" type="date" placeholder="Enter Date" /> <br />
                     <span className="DateMessage"> {dateMessage} </span>
                 </fieldset>
                 
@@ -146,7 +147,7 @@ function Actions (props) {
                 <fieldset>
                     <label htmlFor="ActionType">Action Type</label> <br />
                     <select ref={selectActionType} name="ActionType" id="ActionType-select">
-                        <option value="">--Please choose an action type--</option>
+                        <option value="">--Please select an action type--</option>
                         <option value="Phone">Phone</option>
                         <option value="Meeting">Meeting</option>    
                         <option value="Other">Other</option>    

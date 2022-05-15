@@ -1,11 +1,97 @@
-.PopUpWindow {
+.CustomersList .PopUpWindow {
     position:fixed;
     width: 30%;
     border-style: groove;
-    background-color: whitesmoke;
+    background-color: #213b50;  
     border-color: black;
     right: 50%;    
     top: 20%;                 
     transform: translate(50%, 0);
-    padding: 20px
+    padding: 20px;
+    text-align: center;
+}
+
+/* .PopUpWindow  .PopUpWindowForm {
+    background-color: #213b50;  
+} */
+
+.CustomersList .PopUpWindow h1 {
+    font-weight: 400;
+    font-size: 1.75em;
+    color: lightgrey;
+}
+
+
+.CustomersList .PopUpWindow fieldset {
+    text-align: right;
+    margin-right: 10px;
+    border-width: 0;
+}
+
+.CustomersList .PopUpWindow label {
+    font-weight: 400;
+    font-size: 1.25em;
+    color: lightgrey;
+    margin-right: 10px;
+    text-align: left;
+}
+
+.CustomersList .PopUpWindow input {
+    background-color: #2b4a64;
+    color: lightgrey;
+    line-height: 1.5em;
+    font-size: 20px;
+    width: 50%;
+    margin-top: 5px;
+    margin-bottom: 10px; 
+    outline: 0;
+    border: 0;
+    padding: 5px;
+}
+
+
+.CustomersList .PopUpWindow span {
+    display: block;
+    color: red;
+    font-size: 18px;
+}
+
+.CustomersList .PopUpWindow .Buttons{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.CustomersList .PopUpWindow button {
+    /* display: flex;
+    flex-direction:row; */
+    background-color: skyblue;;
+    color: lightgrey;
+    width: auto;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: uppercase;
+    border: 0;
+    font-weight: 400;
+    font-size: 1.0em;
+
+} 
+
+/* .CustomersList .PopUpWindow button .btnSave{
+
+    
+    display: block;
+    text-align: center;
+    padding-right: 20px;
+    margin-left: 100px;
+} */
+
+.CustomersList .PopUpWindow button:hover{
+    background-color: lightblue;
+    color: white;
 }
