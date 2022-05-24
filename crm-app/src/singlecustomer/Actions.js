@@ -8,7 +8,7 @@ import {
     useParams,
     Outlet,
   } from "react-router-dom";
-import './SingleCustomer.css';
+// import './SingleCustomer.css';
 
 import axios from 'axios';
 
@@ -126,7 +126,7 @@ function Actions (props) {
 
     return (
         
-            <div className="Action">
+        <div className="Action">
             
             <h1>Add Action Form</h1>
 
@@ -164,7 +164,7 @@ function Actions (props) {
             </form>
             
 
-             </div>
+        </div>
     
 
     );

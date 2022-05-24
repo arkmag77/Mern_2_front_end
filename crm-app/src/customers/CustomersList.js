@@ -22,11 +22,15 @@ function CustomersList(props) {
 
 
     console.log('props.customerName.value:', props.customerName)
+    
     const [nameMessage, setNameMessage] = useState('');
+
     const [streetMessage, setStreetMessage] = useState('');
     const [zipcodeMessage, setZipcodeMessage] = useState('');
     const [cityMessage, setCityMessage] = useState('');
     const [nipMessage, setNipMessage] = useState('');
+    // const [serverResponseMessage, setserverResponseMessage] = useState('');
+    
 
 
     const validate = (e) => {
@@ -142,21 +146,24 @@ function CustomersList(props) {
             setNipMessage('');
         }
 
-        /* if (props.serverResponseErr === 'Error: Request failed with status code 404') {
+        if (props.serverResponseErr === 'Error: Request failed with status code 404') {
 
             errServerCounter++;
-            alert('Error: Request failed with status code 404')
+            // setserverResponseMessage('Error: Request failed with status code 404');
 
         } else if (props.serverResponseErr === '') {
 
             errServerCounter = 0;
+            // setserverResponseMessage('');
 
         }
-         */
+        
 
-        if (errNameCounter === 0 && errStreetCounter === 0 && errZipcodeCounter === 0 && errCityCounter === 0 && errNipCounter === 0) {
+        if (errNameCounter === 0 && errStreetCounter === 0 && errZipcodeCounter === 0 && errCityCounter === 0 && errNipCounter === 0 && errServerCounter === 0) {
+            
             props.editCustomer(customerIdToEdit);
             setPopUpToEditVisible(false);
+
 
         }
 
@@ -172,8 +179,8 @@ function CustomersList(props) {
                 <td className="CustomerName"> {customer.name}</td>
                 <td className="Adres">{customer.address.street} {<br />} {customer.address.zipcode} {customer.address.city}</td>
                 <td className="Nip">{customer.nip}</td>
-                <td className="Details" onClick={() => { console.log("Details clicked"); props.detailsMethod(customer._id) }}><Link to={`/singlecustomer/${customer._id}`} > Details </Link> </td>
-                <td className="Edit" ><button onClick={() => {
+                <td className="Details" onClick={() => { console.log("Details clicked"); props.detailsMethod(customer._id) }}><Link className="link" to={`/singlecustomer/${customer._id}`} > Details </Link> </td>
+                <td className="Buttons" ><button onClick={() => {
                     console.log("Edit Customer btn clicked"); setCustomerIdToEdit(customer._id);
                     props.setCustomerName(customer.name); props.setCustomerStreet(customer.address.street); props.setCustomerZipcode(customer.address.zipcode);
                     props.setCustomerCity(customer.address.city); props.setCustomerNip(customer.nip);
@@ -189,58 +196,60 @@ function CustomersList(props) {
         <div className="CustomersList" >
 
             {(isPopUpToEditVisible) &&
-            <div className="PopUpWindow" >
+                <div className="PopUpWindow" >
 
-                <h1>Edit Customer Form</h1>
-                <form className="PopUpWindowForm" onSubmit={(e) => { console.log("Save btn clicked, customer._id:", customerIdToEdit); validate(e)/* props.editCustomer(e, customerIdToEdit);   setPopUpToEditVisible(false) */ }}>
+                    <h1>Edit Customer Form</h1>
+                    <form className="PopUpWindowForm" onSubmit={(e) => { console.log("Save btn clicked, customer._id:", customerIdToEdit); validate(e)/* props.editCustomer(e, customerIdToEdit);   setPopUpToEditVisible(false) */ }}>
 
-                    <fieldset>
-                        <label htmlFor="Name">Name and Surname</label> 
-                        <input /* ref={inputName} */ value={props.customerName} onChange={(e) => props.setCustomerName(e.target.value)} name="Name" type="text" /* placeholder={props.customerNameToEdit} */ /* value={props.target.value}  */  /*onChange={(e)=>props.setCustomerName(e.target.value)} /* value={customerNameToEdit} */ /><br />
-                        <span className='NameMessage'>{nameMessage}</span> 
-                    </fieldset>
+                        <fieldset>
+                            <label htmlFor="Name">Name and Surname</label>
+                            <input /* ref={inputName} */ value={props.customerName} onChange={(e) => props.setCustomerName(e.target.value)} name="Name" type="text" /* placeholder={props.customerNameToEdit} */ /* value={props.target.value}  */  /*onChange={(e)=>props.setCustomerName(e.target.value)} /* value={customerNameToEdit} */ /><br />
+                            <span className='NameMessage'>{nameMessage}</span>
+                        </fieldset>
 
-                    <fieldset >
-                         <label htmlFor="Stree">Street</label> 
-                        <input /* ref={props.inputStreet} */ value={props.customerStreet} onChange={(e) => props.setCustomerStreet(e.target.value)} name="Street" type="text" placeholder="Enter Street" /> <br />
-                        <span className='streetMessage'>{streetMessage}</span> <br />
+                        <fieldset >
+                            <label htmlFor="Stree">Street</label>
+                            <input /* ref={props.inputStreet} */ value={props.customerStreet} onChange={(e) => props.setCustomerStreet(e.target.value)} name="Street" type="text" placeholder="Enter Street" /> <br />
+                            <span className='streetMessage'>{streetMessage}</span> <br />
 
-                        <label htmlFor="Zipcode">Zipcode</label> 
-                        <input /* ref={props.inputZipcode} */ value={props.customerZipcode} onChange={(e) => props.setCustomerZipcode(e.target.value)} name="Zipcode" type="text" placeholder="Enter Zipcode" /> <br />
-                        <span className='ZipcodeMessage'>{zipcodeMessage}</span> <br />
+                            <label htmlFor="Zipcode">Zipcode</label>
+                            <input /* ref={props.inputZipcode} */ value={props.customerZipcode} onChange={(e) => props.setCustomerZipcode(e.target.value)} name="Zipcode" type="text" placeholder="Enter Zipcode" /> <br />
+                            <span className='ZipcodeMessage'>{zipcodeMessage}</span> <br />
 
-                        <label htmlFor="City">City</label> 
-                        <input /* ref={props.inputCity} */ value={props.customerCity} onChange={(e) => props.setCustomerCity(e.target.value)} name="City" type="text" placeholder="Enter City" /> <br />
-                        <span className='CityMessage'>{cityMessage}</span> 
-                    </fieldset>
+                            <label htmlFor="City">City</label>
+                            <input /* ref={props.inputCity} */ value={props.customerCity} onChange={(e) => props.setCustomerCity(e.target.value)} name="City" type="text" placeholder="Enter City" /> <br />
+                            <span className='CityMessage'>{cityMessage}</span>
+                        </fieldset>
 
-                    <fieldset>
-                        <label htmlFor="Nip">NIP Number</label> 
-                        <input /* ref={props.inputNip} */ value={props.customerNip} onChange={(e) => props.setCustomerNip(e.target.value)} name="Nip" type="text" placeholder="Enter NIP Number" />
-                        <span className='nipMessage'>{nipMessage}</span> 
-                    </fieldset>
+                        <fieldset>
+                            <label htmlFor="Nip">NIP Number</label>
+                            <input /* ref={props.inputNip} */ value={props.customerNip} onChange={(e) => props.setCustomerNip(e.target.value)} name="Nip" type="text" placeholder="Enter NIP Number" />
+                            <span className='nipMessage'>{nipMessage}</span>
+                        </fieldset>
 
-                    <fieldset className="Buttons">
-                        <button type="Submit" className="btnSave" /* onClick={()=>{console.log("Save btn clicked, customer._id:", customerIdToEdit); props.editCustomer(customerIdToEdit); setPopUpToEditVisible(false) }} */> Save </button>
-                        <button className="btnNo" onClick={() => { console.log("No btn clicked"); setPopUpToEditVisible(false) }}> Do not save </button>
-                    </fieldset>    
+                        <fieldset className="Buttons">
+                            <button type="Submit" className="btnSave" /* onClick={()=>{console.log("Save btn clicked, customer._id:", customerIdToEdit); props.editCustomer(customerIdToEdit); setPopUpToEditVisible(false) }} */> Save </button>
+                            <button className="btnNo" onClick={() => { console.log("No btn clicked"); setPopUpToEditVisible(false) }}> Do not save </button>
+                        </fieldset>
 
-                    <fieldset>
-                            <span className="ServerRespComment"> {/* {props.serverResponseErr}  */}</span>
-                    </fieldset>
+                        <fieldset>
+                            <span className="ServerRespComment"> {/* {serverResponseMessage} */} {props.serverResponseErr} </span>
+                        </fieldset>
 
-                </form>
+                    </form>
 
-            </div>}
+                </div>}
 
             {isPopUpToDeleteVisible && <div className="PopUpWindow" >
-                <p>Do You want to delete Customer?</p>
-                <button className="btnYes" onClick={() => { console.log("Yes btn clicked, customer._id:", customerIdToDelete); props.removeCustomer(customerIdToDelete); setPopUpToDeleteVisible(false) }}> Yes </button>
-                <button className="btnNo" onClick={() => { console.log("No btn clicked"); setPopUpToDeleteVisible(false) }}> No </button>
+                <h3>Do You want to delete Customer?</h3>
+                <fieldset className="Buttons">
+                    <button className="btnYes" onClick={() => { console.log("Yes btn clicked, customer._id:", customerIdToDelete); props.removeCustomer(customerIdToDelete); setPopUpToDeleteVisible(false) }}> Yes </button>
+                    <button className="btnNo" onClick={() => { console.log("No btn clicked"); setPopUpToDeleteVisible(false) }}> No </button>
+                </fieldset>
             </div>}
 
-            <div className="CustomersList">
-                <table className="List">
+            <div /* className="CustomersList" */>
+                <table className="CustomersTable">
                     <thead>
                         <tr>
                             <td>#</td>

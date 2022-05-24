@@ -102,7 +102,7 @@ function SingleCustomer(props) {
                 <td className="ActionId">{date.toLocaleDateString()} </td>
                 <td className="ActionType">{action.action_type} </td>
                 <td className="ActionDesc">{action.action_description} </td> 
-                <td> <button className="Btn" onClick={()=>{setPopUpWindow(true); setActionIdToDelete(action._id); console.log("setPopUpWindow wywołanie, action._id: ", action._id) /*props.removeMethod(event._id) */}}> Delete</button></td>  
+                <td className="TdBtn"> <button className="Btn" onClick={()=>{setPopUpWindow(true); setActionIdToDelete(action._id); console.log("setPopUpWindow wywołanie, action._id: ", action._id) /*props.removeMethod(event._id) */}}> Delete</button></td>  
             </tr>
         );
     })
@@ -111,16 +111,18 @@ function SingleCustomer(props) {
 
         <div className="SingleCustomer">
                 
-            <div> <p>Customer Name: {singleCustomer.name}, </p> <p>Customer address: {singleCustomer.address?.street}, {singleCustomer.address?.zipcode} {singleCustomer.address?.city} </p>    {/* {pElements[0]}  */}  Customer NIP: {singleCustomer.nip} </div>
+            <div className="Customer"> <p>Customer Name: {singleCustomer.name}, </p> <p>Customer address: {singleCustomer.address?.street}, {singleCustomer.address?.zipcode} {singleCustomer.address?.city} </p>    {/* {pElements[0]}  */}  Customer NIP: {singleCustomer.nip} </div>
 
             {popUpWindow && <div className="PopUpWindow" >
-                    <p>Do You want to delete action?</p>
+                <h3>Do You want to delete action?</h3>
+                <fieldset className="Buttons">
                     <button className="BtnYes" onClick={()=>{console.log("Yes btn clicked, action._id:", actionIdToDelete); removeAction(id, actionIdToDelete); setPopUpWindow(false) }}> Yes </button>
                     <button className="BtnNo" onClick={()=>{console.log("No btn clicked"); setPopUpWindow(false)}}> No </button>
+                </fieldset>
             </div> }   
 
             <div className="ActionList">
-                <table className="List">
+                <table className="ActionsTable">
                     <thead>
                         <tr>
                             <td>#</td>
@@ -137,13 +139,9 @@ function SingleCustomer(props) {
                 </table>
             </div>
 
-            <div>
-                <button className="BtnAddAction" ><Link to={`/action/${id}`} >Add Action</Link></button>
-                {/* <button className="BtnAddAction"  onClick={navigate ('/actions')}>Add Action</button> */}
-                {/* <button className="BtnAddAction"  onClick={()=>navigate ('/actions')}>Add Action</button> */}
+            <div className="DivBtnAddAction">
+                <button className="BtnAddAction" ><Link className="link"  to={`/action/${id}`} >Add Action</Link></button>
             </div>
-
-            {/* <Outlet/> */}
  
         </div>
     );

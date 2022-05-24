@@ -43,35 +43,11 @@ function Navbar(props) {
 
       }
 
-      // if (response.data.error === 'Unauthenticated'){
-
-      //   props.setUserServerResp(()=>{
-      //     return response.data.error
-      //   })
-      // }
-
-
     })
 
     .catch((error)=>{
       console.error(error);
     })
-
-
-    // navigate("/signin");
-    // let userServerRespwNavbar;
-
-    // props.setUserServerResp(() => {
-
-    //   return (userServerRespwNavbar === false)
-    //   /* return userServerRespwNavbar */
-
-    // });
-
-
-
-    // console.log('userServerRespwNavbar in Logout () in Navbar', userServerRespwNavbar);
-    // localStorage.setItem("localStorage.setItem in Logout () in Navbar", null);
 
   }
 

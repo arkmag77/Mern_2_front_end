@@ -42,15 +42,13 @@ function AddCustomer () {
         let streetMessage;
         let zipcodeMessage;
         let cityMessage;
-        let nipMessage ;
+        let nipMessage;
 
         let errNameCounter = 0;
         let errStreetCounter = 0;
         let errZipcodeCounter = 0;
         let errCityCounter = 0;
         let errNipCounter = 0;
-
-
 
         if (inputName.current.value.trim() === '') {
 
@@ -311,12 +309,8 @@ function AddCustomer () {
 
             </form>
 
-
-            
-            
         </div>
-
-
+        
     );
 
 }

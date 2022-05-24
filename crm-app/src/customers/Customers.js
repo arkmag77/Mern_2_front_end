@@ -13,6 +13,7 @@ function Customers(props) {
     const [customerCity, setCustomerCity] = useState ('');
     const [customerNip, setCustomerNip] = useState ('');
     const [serverResponseErr, setServerResponseErr] = useState('');
+    // const [currentCustomer, setCurrentCustomer]=useState({})
     // const [customerNameToEdit, setCustomerNameToEdit] = useState ('');
 
     // const inputName = React.useRef();
@@ -159,11 +160,11 @@ function Customers(props) {
 
     return (
 
-        <div className="Customer">
+        <div className="Customers">
 
             {/* <div>{customersList}</div> */}
 
-            <p>Customers</p>
+            <h1>Customers</h1>
             <CustomersList detailsMethod={getCustomerId} customersList={customersList} removeCustomer={removeCustomer} 
             /* inputName={inputName} */ customerName={customerName} setCustomerName={setCustomerName} /* inputStreet={inputStreet} */ 
             customerStreet={customerStreet} setCustomerStreet={setCustomerStreet} /* inputCity={inputCity} */ 

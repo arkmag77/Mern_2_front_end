@@ -9,11 +9,12 @@ import AddCustomer from './addcustomer/AddCustomer';
 import SingleCustomer from './singlecustomer/SingleCustomer';
 import Actions from './singlecustomer/Actions';
 
-// import { render } from "react-dom";
 import {
   BrowserRouter,
   Routes,
-  Route
+  Route,
+  Navigate
+  // useNavigate
 } from "react-router-dom";
 
 
@@ -24,6 +25,13 @@ function App() {
  
   console.log("customerIdResp w App", customerIdResp);
   console.log("userServerResp w App ", userServerResp);
+
+  // let navigate = useNavigate();
+
+if (!userServerResp) {
+  {<Navigate to = "/signin"/> }
+}
+
 
   return (
     <BrowserRouter>
