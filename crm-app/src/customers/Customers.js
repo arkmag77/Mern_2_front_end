@@ -12,17 +12,10 @@ function Customers(props) {
     const [customerZipcode, setCustomerZipcode] = useState ('');
     const [customerCity, setCustomerCity] = useState ('');
     const [customerNip, setCustomerNip] = useState ('');
-    const [serverResponseErr, setServerResponseErr] = useState('');
     // const [currentCustomer, setCurrentCustomer]=useState({})
-    // const [customerNameToEdit, setCustomerNameToEdit] = useState ('');
 
-    // const inputName = React.useRef();
-    // const inputStreet = React.useRef();
-    // const inputNumber = React.useRef();
-    // const inputZipcode = React.useRef();
-    // const inputCity = React.useRef();
-    // const inputNip = React.useRef();
-
+    const [serverResponseErr, setServerResponseErr] = useState('');
+    const [isPopUpToEditVisible, setPopUpToEditVisible] = useState(false);
     
 
     useEffect(() => {
@@ -137,7 +130,7 @@ function Customers(props) {
         }
 
         axios.put(
-            'http://www.localhost:8080/api/customer/update/' + customerId,
+            'http://www.localhost:8080/api/customer/updatee/' + customerId,
             JSON.stringify(editedCustomer),
             { 'headers': headers })
             .then((response) => {
@@ -170,7 +163,9 @@ function Customers(props) {
             customerStreet={customerStreet} setCustomerStreet={setCustomerStreet} /* inputCity={inputCity} */ 
             customerZipcode={customerZipcode} setCustomerZipcode={setCustomerZipcode}
             customerCity={customerCity} setCustomerCity={setCustomerCity} /* inputZipcode={inputZipcode}  */ 
-            customerNip={customerNip} setCustomerNip={setCustomerNip} /* inputNip={inputNip} */  editCustomer={editCustomer} 
+            customerNip={customerNip} setCustomerNip={setCustomerNip} 
+            isPopUpToEditVisible={isPopUpToEditVisible} setPopUpToEditVisible={setPopUpToEditVisible}
+            /* inputNip={inputNip} */  editCustomer={editCustomer} 
             serverResponseErr={serverResponseErr} />
         
         </div>

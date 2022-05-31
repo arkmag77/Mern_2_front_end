@@ -44,7 +44,7 @@ if (!userServerResp) {
         <Routes>
               <Route path="/" element={<Customers setCustomerIdResp={setCustomerIdResp} userServerResp={userServerResp} />} /> 
               <Route path="signin" element={<SignIn userServerResp={userServerResp} setUserServerResp={setUserServerResp}  />} />
-              <Route path="addcustomer" element={<AddCustomer/>} />
+              <Route path="addcustomer" element={<AddCustomer userServerResp={userServerResp} />} />
               <Route path="singlecustomer/:id" element={<SingleCustomer  /* customerId={customerIdResp} */   />} />
               <Route path="action/:id"  element={<Actions  customerId={customerIdResp} />} />
         </Routes>

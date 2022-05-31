@@ -13,7 +13,7 @@ function CustomersList(props) {
     console.log("customersList w CustomersList ", customersList);
     console.log("props.serverResponseErr:", props.serverResponseErr);
 
-    const [isPopUpToEditVisible, setPopUpToEditVisible] = useState(false);
+    // const [isPopUpToEditVisible, setPopUpToEditVisible] = useState(false);
     const [customerIdToEdit, setCustomerIdToEdit] = useState('');
     // const [customerNameToEdit, setCustomerNameToEdit] = useState ('');
 
@@ -29,7 +29,16 @@ function CustomersList(props) {
     const [zipcodeMessage, setZipcodeMessage] = useState('');
     const [cityMessage, setCityMessage] = useState('');
     const [nipMessage, setNipMessage] = useState('');
-    // const [serverResponseMessage, setserverResponseMessage] = useState('');
+    const [serverResponseMessage, setserverResponseMessage] = useState('');
+
+    const clearState = () => {
+        console.log('clearState()- wywołanie');
+        setNameMessage('');
+        setStreetMessage('');
+        setZipcodeMessage('');
+        setCityMessage('');
+        setserverResponseMessage('');
+    }
     
 
 
@@ -97,9 +106,10 @@ function CustomersList(props) {
 
         } else {
 
+            setZipcodeMessage('');
             errZipcodeCounter = 0;
 
-            setZipcodeMessage('');
+            
         }
 
         if (props.customerCity.trim() === '') {
@@ -146,15 +156,15 @@ function CustomersList(props) {
             setNipMessage('');
         }
 
-        if (props.serverResponseErr === 'Error: Request failed with status code 404') {
+        if (props.serverResponseErr.trim() === 'Error: Request failed with status code 404') {
 
             errServerCounter++;
-            // setserverResponseMessage('Error: Request failed with status code 404');
+            setserverResponseMessage('Error: Request failed with status code 404');
 
         } else if (props.serverResponseErr === '') {
 
             errServerCounter = 0;
-            // setserverResponseMessage('');
+            setserverResponseMessage('');
 
         }
         
@@ -162,7 +172,7 @@ function CustomersList(props) {
         if (errNameCounter === 0 && errStreetCounter === 0 && errZipcodeCounter === 0 && errCityCounter === 0 && errNipCounter === 0 && errServerCounter === 0) {
             
             props.editCustomer(customerIdToEdit);
-            setPopUpToEditVisible(false);
+            props.setPopUpToEditVisible(false);
 
 
         }
@@ -184,7 +194,7 @@ function CustomersList(props) {
                     console.log("Edit Customer btn clicked"); setCustomerIdToEdit(customer._id);
                     props.setCustomerName(customer.name); props.setCustomerStreet(customer.address.street); props.setCustomerZipcode(customer.address.zipcode);
                     props.setCustomerCity(customer.address.city); props.setCustomerNip(customer.nip);
-                    setPopUpToEditVisible(true)
+                    props.setPopUpToEditVisible(true)
                 }}> Edit Customer </button> </td>
                 <td className="Delete" ><button onClick={() => { console.log("Delete Customer btn clicked"); setCustomerIdToDelete(customer._id); setPopUpToDeleteVisible(true) }}> Delete Customer </button> </td>
             </tr>
@@ -195,11 +205,11 @@ function CustomersList(props) {
 
         <div className="CustomersList" >
 
-            {(isPopUpToEditVisible) &&
+            {(props.isPopUpToEditVisible) &&
                 <div className="PopUpWindow" >
 
                     <h1>Edit Customer Form</h1>
-                    <form className="PopUpWindowForm" onSubmit={(e) => { console.log("Save btn clicked, customer._id:", customerIdToEdit); validate(e)/* props.editCustomer(e, customerIdToEdit);   setPopUpToEditVisible(false) */ }}>
+                    <form className="PopUpWindowForm" onSubmit={(e) => { console.log("Save btn clicked, customer._id:", customerIdToEdit); validate(e);/* props.editCustomer(e, customerIdToEdit);*/   /* props.setPopUpToEditVisible(false) */ }}>
 
                         <fieldset>
                             <label htmlFor="Name">Name and Surname</label>
@@ -228,12 +238,12 @@ function CustomersList(props) {
                         </fieldset>
 
                         <fieldset className="Buttons">
-                            <button type="Submit" className="btnSave" /* onClick={()=>{console.log("Save btn clicked, customer._id:", customerIdToEdit); props.editCustomer(customerIdToEdit); setPopUpToEditVisible(false) }} */> Save </button>
-                            <button className="btnNo" onClick={() => { console.log("No btn clicked"); setPopUpToEditVisible(false) }}> Do not save </button>
+                            <button type="Submit" className="btnSave" /* onClick={()=>{props.setPopUpToEditVisible(false); console.log("Save btn clicked, customer._id:", customerIdToEdit); props.editCustomer(customerIdToEdit); props.setPopUpToEditVisible(false) }} */> Save </button>
+                            <button className="btnNo" onClick={() => { console.log("No btn clicked"); props.setPopUpToEditVisible(false); clearState(); }}> Do not save </button>
                         </fieldset>
 
                         <fieldset>
-                            <span className="ServerRespComment"> {/* {serverResponseMessage} */} {props.serverResponseErr} </span>
+                            <span className="ServerRespComment"> {serverResponseMessage} {/* {props.serverResponseErr} */}</span>
                         </fieldset>
 
                     </form>
@@ -244,7 +254,8 @@ function CustomersList(props) {
                 <h3>Do You want to delete Customer?</h3>
                 <fieldset className="Buttons">
                     <button className="btnYes" onClick={() => { console.log("Yes btn clicked, customer._id:", customerIdToDelete); props.removeCustomer(customerIdToDelete); setPopUpToDeleteVisible(false) }}> Yes </button>
-                    <button className="btnNo" onClick={() => { console.log("No btn clicked"); setPopUpToDeleteVisible(false) }}> No </button>
+                    <button className="btnNo" onClick={() => { console.log("No btn clicked"); 
+                     setPopUpToDeleteVisible(false) }}> No </button>
                 </fieldset>
             </div>}
 

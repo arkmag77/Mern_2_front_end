@@ -10,7 +10,7 @@ import {
 
 import axios from 'axios';
 
-function AddCustomer () {
+function AddCustomer (props) {
 
     const [nameMessage, setNameMessage] = useState('');
     const [streetMessage, setStreetMessage] = useState('');
@@ -233,9 +233,12 @@ function AddCustomer () {
             nip: inputNip.current.value
         };
 
+        let token = props.userServerResp?.jwt;
+
         const headers = {
             'Content-Type': 'application/json',
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'x-auth-token': token
         };
 
         axios.post('http://www.localhost:8080/api/customer/add', 
@@ -254,7 +257,7 @@ function AddCustomer () {
                 console.error(error);
                 setServerResponseErr(() => {
 
-                    return "" + error ;
+                    return "" + error;
     
                 });
             })
